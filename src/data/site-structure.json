@@ -1,0 +1,32 @@
+{
+  "nav": [
+    {
+      "to": "/",
+      "label": "Home"
+    },
+    {
+      "to": "/products",
+      "label": "Products"
+    },
+    {
+      "to": "/categories",
+      "label": "Categories"
+    },
+    {
+      "to": "/deals",
+      "label": "Deals"
+    },
+    {
+      "to": "/cart",
+      "label": "Cart"
+    },
+    {
+      "to": "/about",
+      "label": "About"
+    },
+    {
+      "to": "/contact",
+      "label": "Contact"
+    }
+  ]
+}

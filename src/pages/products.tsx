@@ -2,14 +2,14 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-export function Home() {
-  React.useEffect(() => { document.title = "Home" }, [])
+export function Products() {
+  React.useEffect(() => { document.title = "Products" }, [])
 
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Home</h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">The landing page for first-time visitors to the phone selling store, showcasing top deals and new arrivals to drive quick purchases. It features a hero banner with the latest flagship phone promotion and 'Shop Now' CTA, a grid of 8 featured smartphones categorized by price range (budget, mid-range, premium), customer testimonials carousel with star ratings, and a 'Best Sellers' section with top 6 phones including current discounts. The primary CTA scrolls to the featured products grid and links to /products for full catalog browsing.</p>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Products</h1>
+        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">Main product catalog page for shoppers ready to browse the full inventory of smartphones, tablets, and accessories. Displays all phones in a sortable grid with filters for brand (Apple, Samsung, Google), price range, storage capacity, and 5G support; each product card shows specs summary, current price with strikethrough original, and stock status badges. Includes a comparison table toggle for up to 4 selected phones showing side-by-side specs. Primary CTA adds selected phones to cart and directs to /cart.</p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Button size="lg">
             <span>Get started</span>
@@ -24,42 +24,42 @@ export function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card className="p-6">
             <CardHeader>
-              <CardTitle>Hero banner with countdown timer for flash sale on iPhone 16</CardTitle>
+              <CardTitle>Multi-select filter sidebar with brand logos and price sliders</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Hero banner with countdown timer for flash sale on iPhone 16</p>
+              <p className="text-sm text-muted-foreground">Multi-select filter sidebar with brand logos and price sliders</p>
             </CardContent>
           </Card>
           <Card className="p-6">
             <CardHeader>
-              <CardTitle>Category filter chips (Android/iOS, Budget/Premium) filtering the featured grid</CardTitle>
+              <CardTitle>Sort dropdown (price low-high, popularity, newest, rating)</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Category filter chips (Android/iOS, Budget/Premium) filtering the featured grid</p>
+              <p className="text-sm text-muted-foreground">Sort dropdown (price low-high, popularity, newest, rating)</p>
             </CardContent>
           </Card>
           <Card className="p-6">
             <CardHeader>
-              <CardTitle>Testimonial carousel auto-advancing every 5s with user avatars</CardTitle>
+              <CardTitle>Product comparison table modal comparing CPU, camera, battery</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Testimonial carousel auto-advancing every 5s with user avatars</p>
+              <p className="text-sm text-muted-foreground">Product comparison table modal comparing CPU, camera, battery</p>
             </CardContent>
           </Card>
           <Card className="p-6">
             <CardHeader>
-              <CardTitle>Quick add-to-cart buttons on each featured phone card</CardTitle>
+              <CardTitle>Stock status badges (In Stock, Low Stock, Out of Stock)</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Quick add-to-cart buttons on each featured phone card</p>
+              <p className="text-sm text-muted-foreground">Stock status badges (In Stock, Low Stock, Out of Stock)</p>
             </CardContent>
           </Card>
           <Card className="p-6">
             <CardHeader>
-              <CardTitle>'Load More' button revealing additional products</CardTitle>
+              <CardTitle>Pagination with 24 items per page and infinite scroll option</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">'Load More' button revealing additional products</p>
+              <p className="text-sm text-muted-foreground">Pagination with 24 items per page and infinite scroll option</p>
             </CardContent>
           </Card>
         </div>
