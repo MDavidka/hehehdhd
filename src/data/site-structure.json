@@ -1,4 +1,5 @@
 {
+  "brand": "Phone",
   "nav": [
     {
       "to": "/",
@@ -9,16 +10,12 @@
       "label": "Products"
     },
     {
-      "to": "/categories",
-      "label": "Categories"
-    },
-    {
       "to": "/deals",
       "label": "Deals"
     },
     {
-      "to": "/cart",
-      "label": "Cart"
+      "to": "/trade-in",
+      "label": "Trade In"
     },
     {
       "to": "/about",
@@ -28,5 +25,9 @@
       "to": "/contact",
       "label": "Contact"
     }
-  ]
+  ],
+  "cta": {
+    "label": "Shop now",
+    "href": "/"
+  }
 }

@@ -1,176 +1,149 @@
 import React from 'react'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Slider } from '@/components/ui/slider'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Link } from 'react-router-dom'
-import { CheckCircleIcon, StarIcon, UserIcon } from '@heroicons/react/24/outline'
+import { DevicePhoneMobileIcon, HomeIcon, MagnifyingGlassIcon, ShoppingBagIcon, StarIcon } from '@heroicons/react/24/outline'
 
 export function About() {
   React.useEffect(() => { document.title = "About" }, [])
-  const [timelineValue, setTimelineValue] = React.useState('')
-  const [activePolicy, setActivePolicy] = React.useState(false)
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 items-start">
-        <article className="max-w-3xl space-y-8 lg:pr-12">
-          <Card>
-            <CardHeader>
-              <CardTitle>About</CardTitle>
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-12 items-start">
+        <article className="lg:col-span-8 space-y-12">
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground tracking-tight">About Phone</h1>
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">Over 10 years delivering premium smartphones with nationwide shipping and a 100% satisfaction guarantee. Authorized reseller for all major brands.</p>
+          </div>
+          <Card className="overflow-hidden">
+            <CardHeader >
+              <CardTitle >Our Journey</CardTitle>
+              <CardDescription >Key milestones that built Phone into your trusted smartphone destination</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed">For 5 years, we've been your trusted partner in premium smartphones. As authorized distributors for Apple and Samsung, we bring you genuine devices with full manufacturer warranties and expert support.</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="text-center p-6">
-                  <CardContent className="space-y-2">
-                    <div className="text-3xl font-bold text-primary">$state.rating</div>
-                    <p className="text-sm text-muted-foreground">4.8/5 from 12K reviews</p>
-                    <div className="flex justify-center gap-1">
-                      <StarIcon className="h-4 w-4 text-primary fill-current" />
-                      <StarIcon className="h-4 w-4 text-primary fill-current" />
-                      <StarIcon className="h-4 w-4 text-primary fill-current" />
-                      <StarIcon className="h-4 w-4 text-primary fill-current" />
-                      <StarIcon className="h-4 w-4 text-primary fill-current" />
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="p-6">
-                  <CardContent className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <CheckCircleIcon className="h-5 w-5 text-primary" />
-                      <div>Apple Authorized</div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircleIcon className="h-5 w-5 text-primary" />
-                      <div>Samsung Distributor</div>
-                    </div>
-                  </CardContent>
-                </Card>
+            <CardContent className="p-0">
+              <div className="divide-y divide-border">
+                <div className="p-8 flex items-center gap-6 hover:bg-muted/50 transition-colors">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <HomeIcon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div >
+                    <h3 className="font-semibold text-lg leading-tight">2014 - Founded</h3>
+                    <p className="text-sm text-muted-foreground">Started as a small phone repair shop in downtown.</p>
+                  </div>
+                  <div className="ml-auto text-xs font-mono text-muted-foreground">Year 1</div>
+                </div>
+                <div className="p-8 flex items-center gap-6 hover:bg-muted/50 transition-colors">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <ShoppingBagIcon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div >
+                    <h3 className="font-semibold text-lg leading-tight">2018 - First Store</h3>
+                    <p className="text-sm text-muted-foreground">Opened flagship retail location and began online sales.</p>
+                  </div>
+                  <div className="ml-auto text-xs font-mono text-muted-foreground">Year 5</div>
+                </div>
+                <div className="p-8 flex items-center gap-6 hover:bg-muted/50 transition-colors">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <StarIcon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div >
+                    <h3 className="font-semibold text-lg leading-tight">2023 - 100K Orders</h3>
+                    <p className="text-sm text-muted-foreground">Reached 100,000 happy customers nationwide.</p>
+                  </div>
+                  <div className="ml-auto text-xs font-mono text-muted-foreground">Today</div>
+                </div>
               </div>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Our Journey</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="relative">
-                    <Slider value={timelineValue} onValueChange={setTimelineValue} max={4} step={1} orientation="horizontal" className="w-full" />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                      <div>2019</div>
-                      <div>2020</div>
-                      <div>2022</div>
-                      <div>2023</div>
-                      <div>2024</div>
-                    </div>
-                  </div>
-                  <div className="mt-6 space-y-4">
-                    <div className="flex items-start gap-4">
-                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold">Founded</h4>
-                        <p className="text-sm text-muted-foreground">Started as local repair shop</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold">Apple Partnership</h4>
-                        <p className="text-sm text-muted-foreground">Became authorized reseller</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Warranty Policy</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Accordion type="single" collapsible defaultValue="terms" value={activePolicy} onValueChange={setActivePolicy}>
-                    <AccordionItem value="terms">
-                      <AccordionTrigger>Warranty Terms</AccordionTrigger>
-                      <AccordionContent>1-year manufacturer warranty on all new devices. 90-day warranty on refurbished phones. Covers hardware defects only.</AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="returns">
-                      <AccordionTrigger>Returns & Exchanges</AccordionTrigger>
-                      <AccordionContent>14-day return policy for unopened devices. 7-day exchange window for defective units. Original packaging required.</AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="coverage">
-                      <AccordionTrigger>What's Covered</AccordionTrigger>
-                      <AccordionContent>{"Battery degradation >20%, display defects, motherboard failures. Does not cover water damage or user modifications."}</AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
-                </CardContent>
-              </Card>
+            </CardContent>
+          </Card>
+          <Card >
+            <CardHeader>
+              <CardTitle >Why Choose Phone?</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div >
+                <div className="text-3xl font-bold text-primary">$state.ordersCount</div>
+                <p className="text-muted-foreground text-sm mt-1">Orders Delivered</p>
+              </div>
+              <div >
+                <div className="text-3xl font-bold text-primary">99.8%</div>
+                <p className="text-muted-foreground text-sm mt-1">Customer Satisfaction</p>
+              </div>
             </CardContent>
           </Card>
         </article>
-        <aside className="lg:sticky lg:top-8 lg:h-fit space-y-6">
-          <Card>
+        <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+          <Card >
             <CardHeader>
-              <CardTitle>Meet Our Team</CardTitle>
+              <CardTitle >Our Team</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center gap-4 p-3 -m-3 rounded-lg hover:bg-accent transition-colors">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src="/team/john.jpg" alt="John Doe" />
-                  <AvatarFallback>JD</AvatarFallback>
+              <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
+                <Avatar className="flex-shrink-0">
+                  <AvatarImage src="/placeholder-user.jpg" />
+                  <AvatarFallback>SM</AvatarFallback>
                 </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold">John Doe</p>
-                  <p className="text-sm text-muted-foreground">Founder & CEO</p>
+                <div >
+                  <div className="font-medium">Sarah M.</div>
+                  <div className="text-xs text-muted-foreground">iPhone Expert</div>
                 </div>
-                <Button variant="ghost" size="sm" asChild>
-                  <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
-                    <UserIcon className="h-4 w-4" />
-                  </a>
-                </Button>
+                <Badge variant="secondary">Lead</Badge>
               </div>
-              <div className="flex items-center gap-4 p-3 -m-3 rounded-lg hover:bg-accent transition-colors">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src="/team/sarah.jpg" alt="Sarah Kim" />
-                  <AvatarFallback>SK</AvatarFallback>
+              <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors">
+                <Avatar className="flex-shrink-0">
+                  <AvatarImage src="/placeholder-user.jpg" />
+                  <AvatarFallback>JM</AvatarFallback>
                 </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold">Sarah Kim</p>
-                  <p className="text-sm text-muted-foreground">Head of Sales</p>
+                <div >
+                  <div className="font-medium">Jamal R.</div>
+                  <div className="text-xs text-muted-foreground">Android Specialist</div>
                 </div>
-                <Button variant="ghost" size="sm" asChild>
-                  <a href="https://linkedin.com/in/sarahkim" target="_blank" rel="noopener noreferrer">
-                    <UserIcon className="h-4 w-4" />
-                  </a>
-                </Button>
+                <Badge variant="outline">Support</Badge>
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card >
             <CardHeader>
-              <CardTitle>Store Locations</CardTitle>
+              <CardTitle >Store Locations</CardTitle>
+              <CardDescription >Find us near you</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="h-48 bg-muted rounded-md flex items-center justify-center">
-                <div className="text-muted-foreground text-sm text-center">Interactive Map
-5 Pickup Points</div>
+            <CardContent className="space-y-2">
+              <div >
+                <div className="font-medium">Downtown Flagship</div>
+                <div className="text-xs text-muted-foreground">123 Main St, City Center</div>
               </div>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center justify-between">
-                  <span>Downtown</span>
-                  <Badge variant="outline">Open</Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>Airport</span>
-                  <Badge variant="outline">Open</Badge>
-                </div>
+              <div >
+                <div className="font-medium">Westside Mall</div>
+                <div className="text-xs text-muted-foreground">456 Oak Ave, West Mall</div>
               </div>
+              <Button variant="outline" className="w-full mt-4">
+                <DevicePhoneMobileIcon className="h-4 w-4 mr-2" />
+                <div>Get Directions</div>
+              </Button>
             </CardContent>
           </Card>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 p-4 rounded-xl bg-muted/50">
+              <Badge variant="secondary">Apple Authorized</Badge>
+              <div className="h-3 w-3 bg-green-500 rounded-full" />
+            </div>
+            <div className="flex items-center gap-2 p-4 rounded-xl bg-muted/50">
+              <Badge variant="secondary">Samsung Partner</Badge>
+              <div className="h-3 w-3 bg-green-500 rounded-full" />
+            </div>
+            <div className="flex items-center gap-2 p-4 rounded-xl bg-muted/50">
+              <Badge variant="secondary">Google Certified</Badge>
+              <div className="h-3 w-3 bg-green-500 rounded-full" />
+            </div>
+          </div>
           <Button size="lg" className="w-full">
-            <Link to="/contact">Contact for Warranty or Visit</Link>
+            <MagnifyingGlassIcon className="h-4 w-4 mr-2" />
+            <div>Browse Catalog</div>
           </Button>
+          <Link className="block text-xs text-muted-foreground hover:text-foreground font-medium text-center underline underline-offset-2" to="/products">View all products →</Link>
         </aside>
       </div>
-    </div>
+    </section>
   )
 }

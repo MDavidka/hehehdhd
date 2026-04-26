@@ -1,161 +1,118 @@
 import React from 'react'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { Field, FieldContent, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Separator } from '@/components/ui/separator'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Textarea } from '@/components/ui/textarea'
-import { Cog6ToothIcon, DevicePhoneMobileIcon, MagnifyingGlassIcon, PhoneIcon, UserIcon } from '@heroicons/react/24/outline'
-import { submitTicket, setFiles, openLiveChat, callSupport, copyEmail } from '@/lib/contact-logic'
+import { PhoneIcon } from '@heroicons/react/24/outline'
+import { submitTicket, setFiles, startChat } from '@/lib/contact-logic'
 
 export function Contact() {
   React.useEffect(() => { document.title = "Contact" }, [])
+  const [orderNumber, setOrderNumber] = React.useState(0)
   const [issueType, setIssueType] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [subject, setSubject] = React.useState('')
   const [message, setMessage] = React.useState('')
-  const [faqSearch, setFaqSearch] = React.useState('')
+  const [faqQuery, setFaqQuery] = React.useState('')
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
-      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-12">Contact</h1>
+      <Card className="mb-12 shadow-md">
+        <CardHeader>
+          <CardTitle>Contact</CardTitle>
+          <CardDescription>Get help with your order, device issues, or account questions. Multiple channels available.</CardDescription>
+        </CardHeader>
+      </Card>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Card >
+        <Card className="shadow-md">
           <CardHeader>
             <CardTitle>Submit Support Ticket</CardTitle>
-            <CardDescription>Describe your issue and we'll get back to you within 24 hours</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <form onSubmit={submitTicket} className="space-y-6">
+          <CardContent>
+            <form onSubmit={submitTicket} className="space-y-4">
               <Field>
-                <FieldLabel>Issue Type</FieldLabel>
+                <FieldLabel>Order Number (optional)</FieldLabel>
+                <FieldContent>
+                  <Input placeholder="ORD-123456" value={orderNumber} onChange={setOrderNumber} />
+                </FieldContent>
+              </Field>
+              <Field>
+                <FieldLabel>Device Issue *</FieldLabel>
                 <FieldContent>
                   <Select value={issueType} onValueChange={setIssueType}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select issue type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="order">Order Issue</SelectItem>
-                      <SelectItem value="warranty">Warranty Claim</SelectItem>
-                      <SelectItem value="tech">Technical Support</SelectItem>
-                      <SelectItem value="return">Return/Refund</SelectItem>
+                      <SelectItem value="screen">Screen or Display</SelectItem>
+                      <SelectItem value="battery">Battery or Charging</SelectItem>
+                      <SelectItem value="software">Software or Performance</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </FieldContent>
               </Field>
               <Field>
-                <FieldLabel>Email</FieldLabel>
+                <FieldLabel>Message *</FieldLabel>
                 <FieldContent>
-                  <Input type="email" placeholder="your.email@example.com" value={email} onChange={setEmail} />
+                  <Textarea placeholder="Describe your issue in detail..." value={message} onChange={setMessage} rows={4} />
                 </FieldContent>
               </Field>
               <Field>
-                <FieldLabel>Subject</FieldLabel>
-                <FieldContent>
-                  <Input placeholder="Phone not charging after update" value={subject} onChange={setSubject} />
-                </FieldContent>
-              </Field>
-              <Field>
-                <FieldLabel>Message</FieldLabel>
-                <FieldContent>
-                  <Textarea placeholder="Please describe your issue in detail..." rows={4} value={message} onChange={setMessage} />
-                </FieldContent>
-              </Field>
-              <Field>
-                <FieldLabel>Attach Files (Optional)</FieldLabel>
+                <FieldLabel>Upload Receipt/Photos (optional)</FieldLabel>
                 <FieldContent>
                   <Input type="file" multiple onChange={setFiles} />
                 </FieldContent>
               </Field>
-              <Button type="submit" className="w-full">
-                <PhoneIcon className="h-4 w-4 mr-2" />
-                <div>Submit Ticket</div>
-              </Button>
+              <Button type="submit" className="w-full">Submit Ticket</Button>
+              <p className="text-xs text-muted-foreground">$state.trackingId ? 'Ticket submitted! Tracking: ' + $state.trackingId : ''</p>
             </form>
           </CardContent>
         </Card>
         <div className="space-y-6">
-          <Card >
+          <Card className="shadow-md relative">
             <CardHeader>
-              <CardTitle>
-                <PhoneIcon className="h-5 w-5 mr-2" />
-                <div>Live Chat</div>
-              </CardTitle>
+              <CardTitle>Live Chat</CardTitle>
+              <CardDescription>Chat with phone experts instantly</CardDescription>
             </CardHeader>
-            <CardContent className="p-6">
-              <Button variant="outline" className="w-full" onClick={openLiveChat}>
-                <PhoneIcon className="h-4 w-4 mr-2" />
-                <div>Start Live Chat</div>
-              </Button>
-              <p className="text-sm text-muted-foreground mt-2">Agents available 9AM-9PM daily</p>
+            <CardContent>
+              <div className="flex items-center justify-center h-24 bg-green-50 rounded-lg">
+                <Button variant="outline" size="sm" onClick={startChat}>
+                  <PhoneIcon className="h-4 w-4 mr-2" />
+                  <span>Start Live Chat</span>
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground text-center">Average response time: 45 seconds</p>
             </CardContent>
           </Card>
-          <Card >
+          <Card className="shadow-md">
             <CardHeader>
-              <CardTitle>
-                <MagnifyingGlassIcon className="h-5 w-5 mr-2" />
-                <div>Quick FAQ Search</div>
-              </CardTitle>
-              <CardDescription>Find answers for common phone issues</CardDescription>
+              <CardTitle>FAQ Search</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="relative">
-                <Input placeholder="iPhone 16 battery drain..." value={faqSearch} onChange={setFaqSearch} />
-                <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Command value={faqQuery} onValueChange={setFaqQuery}>
+                  <CommandInput placeholder="Search FAQs..." />
+                  <CommandList>
+                    <CommandEmpty>No FAQs found.</CommandEmpty>
+                    <CommandGroup>
+                      <CommandItem value="warranty">What is your warranty policy?</CommandItem>
+                      <CommandItem value="returns">How do I return a phone?</CommandItem>
+                      <CommandItem value="repairs">Repair services available</CommandItem>
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
               </div>
             </CardContent>
           </Card>
         </div>
       </div>
-      <Separator className="my-12" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card >
-          <CardHeader className="pb-2">
-            <CardTitle>
-              <PhoneIcon className="h-5 w-5 mr-2" />
-              <div>Phone Support</div>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <p className="text-2xl font-bold">(555) 123-4567</p>
-            <Button variant="ghost" size="sm" onClick={callSupport}>Call Now</Button>
-          </CardContent>
-        </Card>
-        <Card >
-          <CardHeader className="pb-2">
-            <CardTitle>
-              <DevicePhoneMobileIcon className="h-5 w-5 mr-2" />
-              <div>Text Support</div>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <p className="text-2xl font-bold">(555) 123-4567</p>
-            <Button variant="ghost" size="sm">Text Now</Button>
-          </CardContent>
-        </Card>
-        <Card >
-          <CardHeader className="pb-2">
-            <CardTitle>
-              <UserIcon className="h-5 w-5 mr-2" />
-              <div>Email Us</div>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <p className="text-sm break-all">support@phoneshop.com</p>
-            <Button variant="ghost" size="sm" onClick={copyEmail}>Copy Email</Button>
-          </CardContent>
-        </Card>
-      </div>
-      <div className="mt-16">
-        <Card >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        <Card className="shadow-md">
           <CardHeader>
-            <CardTitle>
-              <Cog6ToothIcon className="h-5 w-5 mr-2" />
-              <div>Support Hours</div>
-            </CardTitle>
+            <CardTitle>Phone Support Hours</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
@@ -163,33 +120,52 @@ export function Contact() {
                 <TableRow>
                   <TableHead>Day</TableHead>
                   <TableHead>Hours</TableHead>
-                  <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 <TableRow>
                   <TableCell>Monday - Friday</TableCell>
-                  <TableCell>9:00 AM - 9:00 PM</TableCell>
-                  <TableCell className="text-right">
-                    <Badge variant="default">Available</Badge>
-                  </TableCell>
+                  <TableCell>9:00 AM - 8:00 PM</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Saturday</TableCell>
                   <TableCell>10:00 AM - 6:00 PM</TableCell>
-                  <TableCell className="text-right">
-                    <Badge variant="default">Available</Badge>
-                  </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Sunday</TableCell>
                   <TableCell>Closed</TableCell>
-                  <TableCell className="text-right">
-                    <Badge variant="secondary">Closed</Badge>
-                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>
+          </CardContent>
+        </Card>
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardTitle>Response Time Guarantee</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full" />
+                <div>
+                  <p className="font-medium">Email: 24 hours</p>
+                  <p className="text-sm text-muted-foreground">support@phone.com</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                <div>
+                  <p className="font-medium">Phone: 2 hours</p>
+                  <p className="text-sm text-muted-foreground">(555) 123-4567</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full" />
+                <div>
+                  <p className="font-medium">Chat: Instant</p>
+                </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>

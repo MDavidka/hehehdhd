@@ -1,158 +1,119 @@
 import React from 'react'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Badge } from '@/components/ui/badge'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Slider } from '@/components/ui/slider'
-import { ArrowRightIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
-import { addDealOfTheDayToCart, claimDealOfTheDay, addBundleToCart, addSamsungToCart, addPixelToCart, addIphone14ToCart } from '@/lib/deals-logic'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function Deals() {
   React.useEffect(() => { document.title = "Deals" }, [])
-  const [bundleQuantity, setBundleQuantity] = React.useState(0)
-  const [expiredDealsOpen, setExpiredDealsOpen] = React.useState(false)
 
   return (
-    <div className="min-h-screen space-y-12 bg-background pb-12 pt-24">
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">Deals</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-xl text-muted-foreground sm:mt-6">Flash sales, bundle offers, refurbished phones & clearance items with limited stock</p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" onClick={addDealOfTheDayToCart}>
-              <ShoppingBagIcon className="mr-2 h-5 w-5" />
-              <div>Claim Deal of the Day</div>
-            </Button>
-            <Button variant="outline" size="lg" href="/cart">
-              <ArrowRightIcon className="mr-2 h-5 w-5" />
-              <div>View Cart</div>
-            </Button>
-          </div>
+    <main className="min-h-screen bg-background text-foreground">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Deals</h1>
+        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">Dedicated page for bargain hunters featuring time-sensitive promotions, bundle offers, and clearance phones with urgency indicators. Shows deal cards with original price strikethrough, savings percentage badges, countdown timers, and bundle details like 'phone + case + charger'. Includes 'Deal of the Day' spotlight and past deal archive. Primary CTA 'Grab Deal Now' adds bundle to cart and navigates to /cart.</p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Button size="lg">
+            <span>Shop now</span>
+          </Button>
+          <Button size="lg" variant="outline">
+            <span>Browse phones</span>
+          </Button>
         </div>
       </section>
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <Card className="relative overflow-hidden">
-            <CardHeader className="pb-4">
-              <Badge variant="destructive">Deal of the Day</Badge>
-              <CardTitle className="mt-2">iPhone 16 Pro Max</CardTitle>
-              <CardDescription>Lightning flash sale - only 3 hours left!</CardDescription>
-            </CardHeader>
-            <div className="flex items-center justify-between pb-4">
-              <div className="text-3xl font-bold">$999</div>
-              <div className="text-sm text-destructive line-through">$1,299</div>
-            </div>
-            <div className="mb-6 flex h-2 w-full overflow-hidden rounded-full bg-muted">
-              <div className="h-full bg-destructive">$state.dealTimerProgress</div>
-            </div>
-            <div className="text-sm text-muted-foreground mb-4">$state.dealCountdown</div>
-            <Button size="lg" className="w-full" onClick={claimDealOfTheDay}>
-              <div>Add to Cart (8 left!)</div>
-            </Button>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Bundle Savings Calculator</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <label className="text-sm font-medium">iPhone 16 + Case + Charger</label>
-                <div className="flex items-center space-x-2">
-                  <div className="text-2xl font-bold text-primary">$1,248</div>
-                  <div className="text-sm text-destructive font-bold">Save $151 (11%)</div>
-                </div>
-              </div>
-              <Slider value={bundleQuantity} onValueChange={setBundleQuantity} max={5} step={1} />
-              <Button onClick={addBundleToCart}>Add Bundle to Cart</Button>
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8">Available now</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card className="overflow-hidden">
+            <AspectRatio ratio={1}>
+              <div className="h-full w-full bg-muted" />
+            </AspectRatio>
+            <CardContent className="p-4">
+              <CardTitle className="text-base">Countdown timers on each deal card</CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">From $—</p>
+              <Button size="sm" className="mt-3 w-full">
+                <span>View details</span>
+              </Button>
             </CardContent>
           </Card>
-        </div>
-      </section>
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Badge />
-                <div>Refurbished</div>
-              </div>
-              <CardTitle>Samsung Galaxy S24 Ultra</CardTitle>
-              <Badge variant="secondary">Excellent</Badge>
-            </CardHeader>
-            <CardContent className="pb-0">
-              <div className="space-y-1 text-sm">
-                <div>
-                  <span className="font-medium">$899</span>
-                  <span className="ml-1 text-muted-foreground line-through">$1,199</span>
-                </div>
-                <div className="text-muted-foreground">$state.samsungCountdown</div>
-              </div>
+          <Card className="overflow-hidden">
+            <AspectRatio ratio={1}>
+              <div className="h-full w-full bg-muted" />
+            </AspectRatio>
+            <CardContent className="p-4">
+              <CardTitle className="text-base">Savings calculator showing monthly payment breakdown</CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">From $—</p>
+              <Button size="sm" className="mt-3 w-full">
+                <span>View details</span>
+              </Button>
             </CardContent>
-            <CardFooter>
-              <Button className="w-full" onClick={addSamsungToCart}>Claim Deal (5 left!)</Button>
-            </CardFooter>
           </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Google Pixel 9 Pro</CardTitle>
-              <Badge variant="secondary">Very Good</Badge>
-            </CardHeader>
-            <CardContent className="pb-0">
-              <div className="space-y-1 text-sm">
-                <div>
-                  <span className="font-medium">$749</span>
-                  <span className="ml-1 text-muted-foreground line-through">$999</span>
-                </div>
-                <div className="text-muted-foreground">$state.pixelCountdown</div>
-              </div>
+          <Card className="overflow-hidden">
+            <AspectRatio ratio={1}>
+              <div className="h-full w-full bg-muted" />
+            </AspectRatio>
+            <CardContent className="p-4">
+              <CardTitle className="text-base">Bundle configurator selecting add-ons</CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">From $—</p>
+              <Button size="sm" className="mt-3 w-full">
+                <span>View details</span>
+              </Button>
             </CardContent>
-            <CardFooter>
-              <Button className="w-full" onClick={addPixelToCart}>Claim Deal (12 left!)</Button>
-            </CardFooter>
           </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Clearance: iPhone 14</CardTitle>
-              <Badge variant="outline">Final Stock</Badge>
-            </CardHeader>
-            <CardContent className="pb-0">
-              <div className="space-y-1 text-sm">
-                <div>
-                  <span className="font-medium">$599</span>
-                  <span className="ml-1 text-muted-foreground line-through">$799</span>
-                </div>
-                <div className="text-muted-foreground">$state.iphone14Countdown</div>
-              </div>
+          <Card className="overflow-hidden">
+            <AspectRatio ratio={1}>
+              <div className="h-full w-full bg-muted" />
+            </AspectRatio>
+            <CardContent className="p-4">
+              <CardTitle className="text-base">Deal history accordion with past offers</CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">From $—</p>
+              <Button size="sm" className="mt-3 w-full">
+                <span>View details</span>
+              </Button>
             </CardContent>
-            <CardFooter>
-              <Button variant="destructive" className="w-full" onClick={addIphone14ToCart}>Grab Last Units (3 left!)</Button>
-            </CardFooter>
+          </Card>
+          <Card className="overflow-hidden">
+            <AspectRatio ratio={1}>
+              <div className="h-full w-full bg-muted" />
+            </AspectRatio>
+            <CardContent className="p-4">
+              <CardTitle className="text-base">Wishlist button for deals</CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">From $—</p>
+              <Button size="sm" className="mt-3 w-full">
+                <span>View details</span>
+              </Button>
+            </CardContent>
           </Card>
         </div>
       </section>
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Recently Expired Deals</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="multiple" value={expiredDealsOpen}>
-              <AccordionItem value="samsung-sale">
-                <AccordionTrigger>Galaxy S23 Ultra Flash Sale - Ended 2 days ago</AccordionTrigger>
-                <AccordionContent>Was $799 (originally $1,099) - 500 units sold out in 6 hours</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="iphone-bundle">
-                <AccordionTrigger>iPhone 15 + AirPods Bundle - Ended yesterday</AccordionTrigger>
-                <AccordionContent>Saved customers $199 - popular bundle with 320+ purchases</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="pixel-refurb">
-                <AccordionTrigger>Refurbished Pixel 8 Pro - Ended 1 week ago</AccordionTrigger>
-                <AccordionContent>Excellent condition units - all 150 sold at $549 each</AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 border-t border-border">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8">What you'll find here</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card className="p-6">
+            <CardHeader>
+              <CardTitle>Bundle configurator selecting add-ons</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">Bundle configurator selecting add-ons</p>
+            </CardContent>
+          </Card>
+          <Card className="p-6">
+            <CardHeader>
+              <CardTitle>Deal history accordion with past offers</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">Deal history accordion with past offers</p>
+            </CardContent>
+          </Card>
+          <Card className="p-6">
+            <CardHeader>
+              <CardTitle>Wishlist button for deals</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">Wishlist button for deals</p>
+            </CardContent>
+          </Card>
+        </div>
       </section>
-    </div>
+    </main>
   )
 }
