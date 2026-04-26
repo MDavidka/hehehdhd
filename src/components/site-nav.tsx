@@ -9,11 +9,11 @@ const CTA = { label: "Shop deals", href: "/deals" }
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
-  { to: '/products', label: 'Products' },
+  { to: '/phones', label: 'Phones' },
+  { to: '/phones/:id', label: 'Phone Details' },
   { to: '/deals', label: 'Deals' },
-  { to: '/trade-in', label: 'Trade In' },
   { to: '/about', label: 'About' },
-  { to: '/support', label: 'Support' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export function SiteNav() {

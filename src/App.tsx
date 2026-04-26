@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom'
 import { SiteNav } from './components/site-nav'
 import { SiteFooter } from './components/site-footer'
 import { Home } from './pages/index'
-import { Products } from './pages/products'
+import { Phones } from './pages/phones'
+import { PhoneDetails } from './pages/phones-id'
 import { Deals } from './pages/deals'
-import { TradeIn } from './pages/trade-in'
 import { About } from './pages/about'
-import { Support } from './pages/support'
+import { Contact } from './pages/contact'
 
 export default function App() {
   return (
@@ -15,11 +15,11 @@ export default function App() {
       <main className="flex-1">
         <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/phones" element={<Phones />} />
+        <Route path="/phones/:id" element={<PhoneDetails />} />
         <Route path="/deals" element={<Deals />} />
-        <Route path="/trade-in" element={<TradeIn />} />
         <Route path="/about" element={<About />} />
-        <Route path="/support" element={<Support />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Home />} />
         </Routes>
       </main>

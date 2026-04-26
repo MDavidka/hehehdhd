@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom'
 const BRAND = "Phone"
 const COLUMNS = [
   { title: 'Shop', items: [
-    { to: '/products', label: 'Products' },
     { to: '/deals', label: 'Deals' },
   ]},
   { title: 'Support', items: [
-    { to: '/support', label: 'Support' },
+    { to: '/contact', label: 'Contact' },
   ]},
   { title: 'Company', items: [
     { to: '/about', label: 'About' },
