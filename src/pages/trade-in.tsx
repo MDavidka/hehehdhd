@@ -1,88 +1,183 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
+import { Slider } from '@/components/ui/slider'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { DollarSignIcon, MagnifyingGlassIcon, MapPinIcon, PhoneIcon, TruckIcon } from '@heroicons/react/24/outline'
+import { onSubmitQuote, handlePhotoUpload, generateShippingLabel } from '@/lib/trade-in-logic'
 
 export function TradeIn() {
   React.useEffect(() => { document.title = "Trade In" }, [])
+  const [model, setModel] = React.useState('')
+  const [scratches, setScratches] = React.useState('')
+  const [batteryHealth, setBatteryHealth] = React.useState('')
+  const [searchTerm, setSearchTerm] = React.useState('')
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Trade In</h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">Dedicated page for the phone trade-in program, helping users calculate value for their old devices toward new purchases. Features a step-by-step trade-in wizard with device selection dropdown, condition assessment quiz (5 questions about scratches/battery/screen), instant quote calculator, shipping label generator, and trade-in FAQ accordion. Shows bonus credit table for popular trade-in models. Primary CTA submits quote request form linking back to /phones.</p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Button size="lg">
-            <span>Get started</span>
-          </Button>
-          <Button size="lg" variant="outline">
-            <span>Learn more</span>
-          </Button>
-        </div>
-      </section>
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 border-t border-border">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-8">What you'll find here</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="p-6">
-            <CardHeader>
-              <CardTitle>Device selection autocomplete search</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Device selection autocomplete search</p>
-            </CardContent>
-          </Card>
-          <Card className="p-6">
-            <CardHeader>
-              <CardTitle>Condition quiz with 5 assessment questions</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Condition quiz with 5 assessment questions</p>
-            </CardContent>
-          </Card>
-          <Card className="p-6">
-            <CardHeader>
-              <CardTitle>Real-time trade-in value calculator</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Real-time trade-in value calculator</p>
-            </CardContent>
-          </Card>
-          <Card className="p-6">
-            <CardHeader>
-              <CardTitle>Bonus credit table for popular models</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Bonus credit table for popular models</p>
-            </CardContent>
-          </Card>
-          <Card className="p-6">
-            <CardHeader>
-              <CardTitle>Shipping label PDF generator</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Shipping label PDF generator</p>
-            </CardContent>
-          </Card>
-          <Card className="p-6">
-            <CardHeader>
-              <CardTitle>Trade-in history table for returning users</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Trade-in history table for returning users</p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <Card className="p-8 md:p-12 text-center">
-          <CardTitle className="text-2xl md:text-3xl">Ready to start?</CardTitle>
-          <p className="mt-3 text-muted-foreground">Reach out and we'll get back to you.</p>
-          <div className="mt-6 flex justify-center">
-            <Button size="lg">
-              <span>Contact us</span>
-            </Button>
-          </div>
+    <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Trade In</CardTitle>
+            <CardDescription>Get an instant quote for your old phone and upgrade to the latest model. Complete the form below to start.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <Form className="space-y-6">
+              <form onSubmit={onSubmitQuote} className="space-y-6">
+                <FormField name="brand">
+                  <FormItem>
+                    <FormLabel>Brand</FormLabel>
+                    <FormControl>
+                      <Select>
+                        <SelectTrigger />
+                        <SelectContent>
+                          <SelectItem value="apple">Apple</SelectItem>
+                          <SelectItem value="samsung">Samsung</SelectItem>
+                          <SelectItem value="google">Google</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="model">
+                  <FormItem>
+                    <FormLabel>Model</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g. iPhone 14 Pro" value={model} onChange={setModel} />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <div className="space-y-4">
+                  <Label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Condition Assessment</Label>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label className="text-sm">Scratches</Label>
+                      <Slider value={scratches} onValueChange={setScratches} max={10} step={1} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-sm">Battery Health</Label>
+                      <Slider value={batteryHealth} onValueChange={setBatteryHealth} max={100} step={1} />
+                    </div>
+                  </div>
+                </div>
+                <FormField name="photo">
+                  <FormItem>
+                    <FormLabel>Upload Photo (AI Assessment)</FormLabel>
+                    <FormControl>
+                      <Input type="file" onChange={handlePhotoUpload} />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <div className="p-4 bg-muted rounded-md">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0">
+                      <DollarSignIcon className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-2xl">$</h3>
+                      <span className="text-4xl font-black">$state.quoteAmount</span>
+                    </div>
+                  </div>
+                </div>
+                <Button type="submit" className="w-full" size="lg">Get Trade-in Quote</Button>
+                <Button variant="outline" type="button" onClick={generateShippingLabel} className="w-full" disabled="$state.quoteAmount === '0'">
+                  <TruckIcon className="h-4 w-4 mr-2" />
+                  <div>Generate Shipping Label</div>
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
         </Card>
-      </section>
-    </main>
+        <div className="space-y-8 lg:sticky lg:top-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <PhoneIcon className="h-6 w-6 mr-2" />
+                <div>Eligible Devices</div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="relative">
+                <Input placeholder="Search devices..." value={searchTerm} onChange={setSearchTerm} className="pl-10" />
+                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              </div>
+              <div className="space-y-2 max-h-64 overflow-y-auto">
+                <div className="text-sm text-muted-foreground p-2">iPhone 12 and newer, Galaxy S21 and newer, Pixel 6 and newer</div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Process Steps</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xs mt-0.5">1</div>
+                  <div>
+                    <p className="font-medium">Get Quote</p>
+                    <p className="text-sm text-muted-foreground">Complete the form above</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xs mt-0.5">2</div>
+                  <div>
+                    <p className="font-medium">Ship Device</p>
+                    <p className="text-sm text-muted-foreground">Print shipping label and send</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xs mt-0.5">3</div>
+                  <div>
+                    <p className="font-medium">Get Credit</p>
+                    <p className="text-sm text-muted-foreground">Credit applied instantly</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Shipping & Hours</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="aspect-video bg-muted rounded-md flex items-center justify-center">
+                <MapPinIcon className="h-12 w-12 text-muted-foreground mr-3" />
+                <div>
+                  <p className="text-lg font-medium">Free Shipping Nationwide</p>
+                  <p className="text-muted-foreground">Labels auto-generated</p>
+                </div>
+              </div>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Service</TableHead>
+                    <TableHead>Hours</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>Trade-in Processing</TableCell>
+                    <TableCell>Mon-Fri 9AM-6PM</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Shipping Labels</TableCell>
+                    <TableCell>24/7 Instant</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Customer Support</TableCell>
+                    <TableCell>Mon-Sun 8AM-8PM</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
   )
 }

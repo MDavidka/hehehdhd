@@ -1,0 +1,202 @@
+{
+  "brief": "A phone selling brand ",
+  "pages": [
+    {
+      "componentName": "Home",
+      "route": "/",
+      "slug": "index",
+      "pageFile": "src/pages/index.tsx",
+      "logicFile": "src/lib/index-logic.ts",
+      "logicModule": "@/lib/index-logic",
+      "pageTitle": "Home",
+      "description": "The landing page targets first-time visitors browsing for smartphones, showcasing the brand's latest flagship models and promotions. It features a full-width hero carousel with top phones and buy-now CTAs, a grid of featured products with prices and ratings, customer testimonials slider, quick spec comparison table for popular models, and a 'Deals of the Week' section with flash sale timers. The primary CTA scrolls to featured products and encourages adding to cart, guiding users toward purchase.",
+      "features": [
+        "Hero carousel auto-rotates 4 flagship phones with overlay buy buttons",
+        "Product grid with image zoom, price badges, and 'Add to Cart' buttons",
+        "Testimonial carousel with 5-star ratings and user avatars",
+        "Flash sale countdown timers for limited-time deals",
+        "Quick spec comparison table sortable by battery/camera/price"
+      ],
+      "primaryAction": "Shop Latest Phones",
+      "secondaryAction": "View All Deals",
+      "pageRole": "landing",
+      "layoutHint": "commerce-landing",
+      "sectionSignature": "hero-products-trust-cta",
+      "density": "spacious"
+    },
+    {
+      "componentName": "Products",
+      "route": "/products",
+      "slug": "products",
+      "pageFile": "src/pages/products.tsx",
+      "logicFile": "src/lib/products-logic.ts",
+      "logicModule": "@/lib/products-logic",
+      "pageTitle": "Products",
+      "description": "This catalog page serves shoppers ready to browse the full inventory, displaying all available phones categorized by series (flagship, mid-range, budget). It includes filterable product cards with detailed specs (screen size, RAM, camera MP, battery life), sort options (price low-high, popularity), search bar by model name, and stock availability badges. The primary CTA adds selected phones to cart and navigates to checkout flow.",
+      "features": [
+        "Faceted filters for price range, storage, color, 5G support",
+        "Product cards expandable to full specs modal",
+        "Live search filters results as user types model keywords",
+        "Sort dropdown for price, rating, newest arrivals",
+        "'Low Stock' badges and out-of-stock notifications"
+      ],
+      "primaryAction": "Add to Cart",
+      "secondaryAction": "Compare Models",
+      "pageRole": "catalog",
+      "layoutHint": "commerce-catalog",
+      "sectionSignature": "hero-grid-cta",
+      "density": "compact"
+    },
+    {
+      "componentName": "Deals",
+      "route": "/deals",
+      "slug": "deals",
+      "pageFile": "src/pages/deals.tsx",
+      "logicFile": "src/lib/deals-logic.ts",
+      "logicModule": "@/lib/deals-logic",
+      "pageTitle": "Deals",
+      "description": "Targets deal-hunters seeking discounts, featuring time-sensitive promotions, bundle offers, refurbished phones, and trade-in deals. Content includes a promotional banner grid with discount percentages, urgency timers, 'Bundle & Save' sections pairing phones with cases/chargers, and a trade-in value calculator form. Primary CTA claims the deal and proceeds to customized checkout.",
+      "features": [
+        "Countdown timers for flash sales expiring in real-time",
+        "Trade-in calculator form estimating value by old phone model",
+        "Bundle builder checkbox selector for accessories",
+        "Refurbished phone table with condition grades and warranties",
+        "'Limited Quantity' alerts on popular deals"
+      ],
+      "primaryAction": "Claim This Deal",
+      "secondaryAction": "Calculate Trade-in",
+      "pageRole": "catalog",
+      "layoutHint": "bento-landing",
+      "sectionSignature": "hero-bento-features-proof",
+      "density": "compact"
+    },
+    {
+      "componentName": "TradeIn",
+      "route": "/trade-in",
+      "slug": "trade-in",
+      "pageFile": "src/pages/trade-in.tsx",
+      "logicFile": "src/lib/trade-in-logic.ts",
+      "logicModule": "@/lib/trade-in-logic",
+      "pageTitle": "Trade In",
+      "description": "Dedicated page for customers upgrading phones, explaining the trade-in program with instant quote tool, eligible device list, and process steps. Features a step-by-step form collecting device details (brand, model, condition via photo upload/quiz), real-time quote display, shipping label generator, and FAQ accordion on policies. Primary CTA submits trade-in request and schedules pickup.",
+      "features": [
+        "Interactive condition quiz with sliders for scratches/battery health",
+        "Photo upload for instant AI-powered condition assessment",
+        "Real-time quote calculator updating on form changes",
+        "Device eligibility searchable table by brand/model",
+        "Shipping label auto-generates after quote acceptance"
+      ],
+      "primaryAction": "Get Trade-in Quote",
+      "pageRole": "trade-in",
+      "layoutHint": "contact-split",
+      "sectionSignature": "form-info-map-hours",
+      "density": "balanced"
+    },
+    {
+      "componentName": "About",
+      "route": "/about",
+      "slug": "about",
+      "pageFile": "src/pages/about.tsx",
+      "logicFile": "src/lib/about-logic.ts",
+      "logicModule": "@/lib/about-logic",
+      "pageTitle": "About",
+      "description": "Informs curious visitors about the brand's mission, innovation history, and manufacturing excellence. Sections include company timeline infographic, core values cards, R&D lab video embed, sustainability initiatives stats (recycled materials used), and leadership team avatars with bios. Primary CTA directs to products page to experience the innovation.",
+      "features": [
+        "Interactive timeline slider highlighting product launch milestones",
+        "Sustainability stats counter animations (e.g., tons recycled)",
+        "Team member cards with LinkedIn links and role badges",
+        "Embedded factory tour video player",
+        "Values grid with hover animations revealing details"
+      ],
+      "primaryAction": "Shop Our Innovation",
+      "pageRole": "about",
+      "layoutHint": "two-column-article",
+      "sectionSignature": "hero-article-aside-cta",
+      "density": "spacious"
+    },
+    {
+      "componentName": "Support",
+      "route": "/support",
+      "slug": "support",
+      "pageFile": "src/pages/support.tsx",
+      "logicFile": "src/lib/support-logic.ts",
+      "logicModule": "@/lib/support-logic",
+      "pageTitle": "Support",
+      "description": "Self-service hub for owners needing help, with searchable knowledge base, warranty checker, repair scheduler, and live chat widget. Includes tabs for FAQs, manuals download, status tracker for repairs, contact form for complex issues. Primary CTA initiates repair request or warranty validation.",
+      "features": [
+        "Searchable FAQ with autocomplete and category tabs",
+        "Warranty lookup form by serial number IMEI",
+        "Repair appointment calendar picker",
+        "Downloadable PDF manuals by model selector",
+        "Live chat widget with bot escalation to agents"
+      ],
+      "primaryAction": "Start Repair Request",
+      "secondaryAction": "Check Warranty",
+      "pageRole": "support",
+      "layoutHint": "support-center",
+      "sectionSignature": "search-categories-articles-contact",
+      "density": "compact"
+    }
+  ],
+  "router": {
+    "type": "react-router-dom",
+    "root": "App.tsx",
+    "routes": [
+      {
+        "path": "/",
+        "componentName": "Home",
+        "importPath": "./pages/index"
+      },
+      {
+        "path": "/products",
+        "componentName": "Products",
+        "importPath": "./pages/products"
+      },
+      {
+        "path": "/deals",
+        "componentName": "Deals",
+        "importPath": "./pages/deals"
+      },
+      {
+        "path": "/trade-in",
+        "componentName": "TradeIn",
+        "importPath": "./pages/trade-in"
+      },
+      {
+        "path": "/about",
+        "componentName": "About",
+        "importPath": "./pages/about"
+      },
+      {
+        "path": "/support",
+        "componentName": "Support",
+        "importPath": "./pages/support"
+      }
+    ]
+  },
+  "theme": {
+    "name": "monochrome",
+    "primaryHue": 0,
+    "primarySat": 0,
+    "radius": 0,
+    "fontHeading": "'JetBrains Mono', ui-monospace",
+    "fontBody": "'Inter', ui-sans-serif"
+  },
+  "chrome": {
+    "brandName": "Phone",
+    "navVariant": "commerce",
+    "headerLayout": "commerce-search-nav",
+    "mobileNav": "bottom-drawer",
+    "footerVariant": "multi-column",
+    "ctaLabel": "Shop deals",
+    "ctaHref": "/deals"
+  },
+  "design": {
+    "visualStyle": "premium-commerce",
+    "sectionRhythm": "bento",
+    "cardTreatment": "elevated",
+    "heroTreatment": "commerce",
+    "typographyScale": "standard",
+    "motionLevel": "subtle"
+  }
+}
