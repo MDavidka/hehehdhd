@@ -1,0 +1,28 @@
+{
+  "nav": [
+    {
+      "to": "/",
+      "label": "Home"
+    },
+    {
+      "to": "/phones",
+      "label": "Phones"
+    },
+    {
+      "to": "/deals",
+      "label": "Deals"
+    },
+    {
+      "to": "/cart",
+      "label": "Cart"
+    },
+    {
+      "to": "/trade-in",
+      "label": "TradeIn"
+    },
+    {
+      "to": "/support",
+      "label": "Support"
+    }
+  ]
+}
